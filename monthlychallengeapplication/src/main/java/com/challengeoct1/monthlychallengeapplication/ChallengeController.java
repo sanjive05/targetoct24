@@ -1,5 +1,7 @@
 package com.challengeoct1.monthlychallengeapplication;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,18 +15,21 @@ public class ChallengeController {
 
     }
     @GetMapping("/challenges")
-    public List<Challenge> getChallenge(){
-        return challengeService.getAllChallenges();
+    public ResponseEntity<Challenge> getChallenge(){
+        return new ResponseEntity(challengeService.getAllChallenges(), HttpStatus.OK);
     }
     @PostMapping("/challenges")
-    public String setChallenge(@RequestBody Challenge challenge){
+    public ResponseEntity<String> setChallenge(@RequestBody Challenge challenge){
         if(challengeService.setChallenge(challenge)) {
-            return "Challenge added Successfully...";
+            return new ResponseEntity("Challenge added Successfully...",HttpStatus.OK);
         }
-        return "Sorry something went wrong";
+        return new ResponseEntity<>("Sorry something went wrong",HttpStatus.NOT_FOUND);
     }
     @GetMapping("/challenges/{month}")
-    public Challenge getAChallenge(@PathVariable String month){
-        return challengeService.getAChallenge(month);
+    public ResponseEntity<Challenge> getAChallenge(@PathVariable String month){
+        if(challengeService.getAChallenge(month) != null){
+            return new ResponseEntity(challengeService.getAChallenge(month),HttpStatus.OK);
+        }
+        return new ResponseEntity(null,HttpStatus.NOT_FOUND);
     }
 }
