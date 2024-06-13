@@ -1,9 +1,25 @@
 package com.challengeoct1.monthlychallengeapplication;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Challenge {
+    @Id
     private long id;
+    @Column(name = "challengeMonth")
     private String month;
     private String description;
+
+    public Challenge(long id, String month, String description) {
+        this.id = id;
+        this.month = month;
+        this.description = description;
+    }
+
+    public Challenge() {
+    }
 
     public long getId() {
         return id;

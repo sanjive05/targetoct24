@@ -1,54 +1,64 @@
 package com.challengeoct1.monthlychallengeapplication;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+
 
 @Service
 public class ChallengeService {
-    private List<Challenge> challenge = new ArrayList<>();
-    private long id=1l;
+
+    @Autowired
+    ChallengeRepository repository ;
+
+
+    private static long id=1l;
     public ChallengeService(){
 
     }
     public List<Challenge> getAllChallenges(){
-        return challenge;
+        return repository.findAll();
     }
     public boolean setChallenge(Challenge challenge){
         challenge.setId(id++);
-        this.challenge.add(challenge);
+        repository.save(challenge);
         return challenge !=null ? true :false ;
     }
 
     public Challenge getAChallenge(String month) {
-        for(Challenge ch : challenge){
-            if(ch.getMonth().equals(month)){
-                return ch;
-            }
-        }
-        return null;
+        Optional<Challenge> challenge1 = Optional.ofNullable(repository.findByMonthIgnoreCase(month));
+        return challenge1.orElse(null);
     }
 
     public boolean updateChallenge(Challenge challenge,Long id) {
-
-        for(Challenge challenge1:this.challenge){
-            if(challenge1.getId()==id) {
-                challenge1.setMonth(challenge.getMonth());
-                challenge1.setDescription(challenge.getDescription());
-                return true;
-            }
+        Optional<Challenge> challenge1 = repository.findById(id);
+        if(challenge1.isPresent()){
+            Challenge challengeToUpdate = challenge1.get();
+            challengeToUpdate.setMonth(challenge.getMonth());
+            challengeToUpdate.setDescription(challenge.getDescription());
+            repository.save(challengeToUpdate);
+            return true;
         }
+
         return false;
     }
 
     public boolean deleteChallenge(Long id) {
-        for(Challenge challenge1:this.challenge){
-            if(challenge1.getId()==id) {
-                this.challenge.remove(challenge1);
-                return true;
-            }
+        Optional<Challenge> challenge1 = repository.findById(id);
+        if(challenge1.isPresent()){
+            repository.deleteById(id);
+            return true;
         }
         return false;
     }
