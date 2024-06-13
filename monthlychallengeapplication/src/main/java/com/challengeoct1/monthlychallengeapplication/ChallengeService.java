@@ -30,4 +30,26 @@ public class ChallengeService {
         }
         return null;
     }
+
+    public boolean updateChallenge(Challenge challenge,Long id) {
+
+        for(Challenge challenge1:this.challenge){
+            if(challenge1.getId()==id) {
+                challenge1.setMonth(challenge.getMonth());
+                challenge1.setDescription(challenge.getDescription());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteChallenge(Long id) {
+        for(Challenge challenge1:this.challenge){
+            if(challenge1.getId()==id) {
+                this.challenge.remove(challenge1);
+                return true;
+            }
+        }
+        return false;
+    }
 }
