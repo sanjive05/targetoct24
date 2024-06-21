@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import './components/ChallengesList.js';
+import ChallengesList from './components/ChallengesList';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [challenges,setChallenges]=useState([
+]);
+  useEffect(()=>{
+    const fetchChallenges = async () => {
+      const response =await axios.get('http://localhost:8080/challenges');
+      setChallenges(response.data);
+    };
+    fetchChallenges();
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit h <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Monthly challenges</h1>
+     <ChallengesList challenges={challenges}/>
     </div>
   );
 }

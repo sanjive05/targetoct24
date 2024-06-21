@@ -2,10 +2,12 @@ package com.challengeoct1.monthlychallengeapplication;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/challenges")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChallengeController {
     private ChallengeService challengeService;
     public ChallengeController(ChallengeService challengeService){
