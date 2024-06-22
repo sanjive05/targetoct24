@@ -1,15 +1,17 @@
 
 import Challenge from "./Challenge";
 function ChallengesList({challenges}){
-
+    console.log("Inside challenge list method...")
     return(
-        <div>
+        
+        <div className="list-group">
             {challenges.map(challenge =>(
                 <div>
-                   <Challenge key ={challenge.id} challenge={challenge}/>
+                    <Challenge challenge={challenge}/>
                 </div>
             ))}
-        </div>
+            </div>
+           
     );
 }
 export default ChallengesList;

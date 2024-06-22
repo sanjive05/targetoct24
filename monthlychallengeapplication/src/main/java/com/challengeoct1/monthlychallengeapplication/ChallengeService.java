@@ -1,10 +1,12 @@
 package com.challengeoct1.monthlychallengeapplication;
 
+import org.apache.tomcat.util.collections.SynchronizedStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
@@ -22,16 +24,22 @@ public class ChallengeService {
     @Autowired
     ChallengeRepository repository ;
 
-
     private static long id=1l;
-    public ChallengeService(){
 
+    public ChallengeService(){
+        try {
+            System.out.println("Inside Servive" + repository.findLastAddreddId());
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
     public List<Challenge> getAllChallenges(){
+        this.id=repository.findLastAddreddId();
         return repository.findAll();
     }
     public boolean setChallenge(Challenge challenge){
-        challenge.setId(id++);
+        challenge.setId(++id);
         repository.save(challenge);
         return challenge !=null ? true :false ;
     }

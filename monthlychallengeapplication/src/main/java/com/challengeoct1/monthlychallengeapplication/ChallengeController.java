@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/challenges")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","http://challenge-app-live.s3-website.ap-south-1.amazonaws.com"})
 public class ChallengeController {
     private ChallengeService challengeService;
     public ChallengeController(ChallengeService challengeService){
