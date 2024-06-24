@@ -19,7 +19,7 @@ function App() {
     try{
       console.log("Inside try method...")
       // here we have to change the url based on our spring boot application url
-      const response =await axios.get('http://challenge-application-env.eba-csaq2wrn.ap-south-1.elasticbeanstalk.com/challenges');
+      const response =await axios.get('http://localhost:5000/challenges');
     setChallenges(response.data);
     }
     catch(error){

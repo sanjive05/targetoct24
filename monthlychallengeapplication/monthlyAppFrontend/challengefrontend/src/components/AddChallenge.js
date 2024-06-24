@@ -7,7 +7,7 @@ function AddChallenge({onChallenges}){
     const handlesubmit = async(e) => {
         e.preventDefault();
         try{
-            await axios.post('http://challenge-application-env.eba-csaq2wrn.ap-south-1.elasticbeanstalk.com/challenges',{month,description});
+            await axios.post('http://localhost:5000/challenges',{month,description});
             setMonth('');
             setDescription('');
             onChallenges();

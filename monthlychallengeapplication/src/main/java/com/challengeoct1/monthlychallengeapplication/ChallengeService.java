@@ -30,16 +30,17 @@ public class ChallengeService {
         try {
             System.out.println("Inside Servive" + repository.findLastAddreddId());
         }
-        catch (Exception e){
+        catch (Exception e) {
             System.out.println(e);
         }
     }
     public List<Challenge> getAllChallenges(){
-        this.id=repository.findLastAddreddId();
         return repository.findAll();
     }
     public boolean setChallenge(Challenge challenge){
-        challenge.setId(++id);
+        //this.id=repository.findLastAddreddId();
+        id++;
+        challenge.setId(id);
         repository.save(challenge);
         return challenge !=null ? true :false ;
     }
