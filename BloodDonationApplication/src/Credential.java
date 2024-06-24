@@ -6,12 +6,12 @@ public class Credential {
         return "123123123";
     }
     public static String getConnectUrl(){
-        return "jdbc:mysql://127.0.0.1:3306/blooddonation";
+        return "/blooddonation";
     }
     public static String getConnectUsername(){
-        return "root";
+        return "";
     }
     public static String getConnectPassword(){
-        return "9344";
+        return "";
     }
 }
