@@ -3,7 +3,7 @@ package com.loose.coupling;
 public class UserManager {
     private UserDataProvider userDataProvider;
 
-    public UserManager(UserDataProvider userDataProvider) {
+    public void setUserDataProvider(UserDataProvider userDataProvider) {
         this.userDataProvider = userDataProvider;
     }
 
