@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Building_Ecart_App.iml" filepath="$PROJECT_DIR$/.idea/Building_Ecart_App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sb-ecom/sb-ecom.iml" filepath="$PROJECT_DIR$/sb-ecom/sb-ecom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring_core/spring_core.iml" filepath="$PROJECT_DIR$/spring_core/spring_core.iml" />
+    </modules>
+  </component>
+</project>
