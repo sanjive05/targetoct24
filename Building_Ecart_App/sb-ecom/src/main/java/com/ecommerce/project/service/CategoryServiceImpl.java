@@ -1,5 +1,6 @@
 package com.ecommerce.project.service;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import com.ecommerce.project.model.Category;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(Long id) {
-        for(Category category:categories){
-            if(category.getCategoryId()==id){
-                System.out.println("checked...");
-               categories.remove(category);
+        Iterator iterator=categories.iterator();
+        while (iterator.hasNext()){
+            Category temp = (Category) iterator.next();
+            if(temp.getCategoryId()==id){
+                iterator.remove();
             }
         }
     }
